@@ -8,8 +8,8 @@ provider "aws" {
 
 resource aws_lambda_function public_bucket {
   filename         =  "./script.zip"
-  function_name    = "public_bucket_7"
-  role             = "${aws_iam_role.iam_for_check_bucket_7.arn}"
+  function_name    = "public_bucket_10"
+  role             = "${aws_iam_role.role_check_bucket_10.arn}"
   description      = "Searching public buckets"
   handler          = "find_public_s3_bucket.handler"
   runtime          = "python3.8"
@@ -19,8 +19,8 @@ resource aws_lambda_function public_bucket {
 
 
 
-resource "aws_iam_role" "iam_for_check_bucket_7" {
-  name = "iam_for_check_bucket_7"
+resource "aws_iam_role" "role_check_bucket_10" {
+  name = "role_check_bucket_10"
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -39,8 +39,8 @@ EOF
 }
 
 #Created Policy for IAM Role
-resource "aws_iam_policy" "policy_check_bucket_7" {
-  name = "policy_check_bucket_7"
+resource "aws_iam_policy" "policy_check_bucket_10" {
+  name = "policy_check_bucket_10"
 
   policy = <<EOF
 {
@@ -67,7 +67,7 @@ EOF
 
 
 
-#resource "aws_iam_role_policy_attachment" "attach_check_bucket_7" {
-#  role       = "${aws_iam_role.role.name}"
-#  policy_arn = "${aws_iam_policy.policy.arn}"
-#}
+resource "aws_iam_role_policy_attachment" "attach_check_bucket_10" {
+  role       = "${aws_iam_role.role_check_bucket_10.name}"
+  policy_arn = "${aws_iam_policy.policy_check_bucket_10.arn}"
+}
