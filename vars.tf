@@ -11,7 +11,7 @@ variable pip_dependencies {
 variable temp_package_folder {
   default = "python_lambda_package"
 }
-
-variable package_filename {
-  default = "package.zip"
-}
+#script_sha1
+#variable package_filename {
+#  default = "package.zip"
+#}
