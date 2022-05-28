@@ -6,7 +6,8 @@ provider "aws" {
   region          = "${var.aws_region}"
 }
 
-resource aws_lambda_function public_bucket {
+
+resource "aws_lambda_function" "public_bucket" {
   filename         =  "./script.zip"
   function_name    = "public_bucket"
   role             = "${aws_iam_role.role_check_bucket.arn}"
@@ -16,7 +17,6 @@ resource aws_lambda_function public_bucket {
   timeout          = 120
   publish          = true
 }
-
 
 
 resource "aws_iam_role" "role_check_bucket" {
@@ -38,7 +38,6 @@ resource "aws_iam_role" "role_check_bucket" {
 EOF
 }
 
-#Created Policy for IAM Role
 resource "aws_iam_policy" "policy_check_bucket" {
   name = "policy_check_bucket"
 
@@ -64,7 +63,6 @@ resource "aws_iam_policy" "policy_check_bucket" {
 }
 EOF
 }
-
 
 
 resource "aws_iam_role_policy_attachment" "attach_check_bucket" {
