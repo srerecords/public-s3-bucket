@@ -7,8 +7,8 @@ def handler(event, context):
     print("PUBLIC BUCKETS:")
 
     for bucket in s3.buckets.all():
-        for oh_noes in s3.BucketAcl(bucket.name).grants:
-            if oh_noes['Grantee']['Type'] == 'Group' and oh_noes['Grantee']['URI'] == 'http://acs.amazonaws.com/groups/global/AllUsers':
+        for grant in s3.BucketAcl(bucket.name).grants:
+            if grant['Grantee']['Type'] == 'Group' and grant['Grantee']['URI'] == 'http://acs.amazonaws.com/groups/global/AllUsers':
                 print(bucket.name)
 
 
